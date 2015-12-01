@@ -69,7 +69,7 @@ std::ifstream* GetFileOpen(std::string filename)
 ThreeLayerNetwork LoadInitialNetwork()
 {
     std::cout << "Please enter the filename for the initial network file:" << std::endl;
-    std::ifstream* initNetwork = GetFileOpen("/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/NeuralNet/sample.NNWDBC.init");
+    std::ifstream* initNetwork = GetFileOpen("/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/NeuralNet/sample.NNGrades.init"); //sample.NNGrades.05.100.trained");// 
     ThreeLayerNetwork initialNetwork = ThreeLayerNetwork(initNetwork);
     initNetwork->close();
     return initialNetwork;
@@ -78,7 +78,7 @@ ThreeLayerNetwork LoadInitialNetwork()
 ExampleContainer LoadTrainingExamples()
 {
     std::cout << "Please enter the filename for the training file:" << std::endl;
-    std::ifstream* trainingFilestream = GetFileOpen("/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/NeuralNet/wdbc.train");
+    std::ifstream* trainingFilestream = GetFileOpen("/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/NeuralNet/grades.train");
     ExampleContainer examples = ExampleContainer(trainingFilestream);
     trainingFilestream->close();
     return examples;
@@ -93,7 +93,7 @@ int GetMaxNumberOfEpochs()
 double GetLearningRate()
 {
     std::cout << "Please enter a floating point number for the learning rate:" << std::endl;
-    return .01; GetDoubleInput();
+    return .05; GetDoubleInput();
 }
 
 int main(int argc, char **argv)
@@ -104,4 +104,18 @@ int main(int argc, char **argv)
     ExampleContainer trainingExamples = LoadTrainingExamples();   
     int maxNumEpochs = GetMaxNumberOfEpochs();
     double learningRate = GetLearningRate();
+    
+    std::list<Example> examples = trainingExamples.GetExamples();
+    
+    for (int i = 0; i < maxNumEpochs; i++)
+    {
+	std::list<Example>::iterator ex;
+	for (ex = examples.begin(); ex != examples.end(); ex++)
+	{
+	    initialNetwork.PropogateForward((*ex));
+	    initialNetwork.PropogateErrorsBackward((*ex));
+	    initialNetwork.UpdateWeights((*ex), learningRate);
+	}
+    }
+    initialNetwork.OutputNetwork();
 }

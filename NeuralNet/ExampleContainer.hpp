@@ -11,6 +11,8 @@ class ExampleContainer
 public:
     ExampleContainer(std::ifstream* examplesFileStream);
     
+    std::list<Example> GetExamples();
+    
 private:
     int _numTrainingExamples;
     int _inputSize;

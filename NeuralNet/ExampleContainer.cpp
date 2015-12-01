@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "ExampleContainer.hpp"
 #include "Example.hpp"
 
@@ -12,9 +14,9 @@ ExampleContainer::ExampleContainer(std::ifstream* examplesFileStream)
     
     for (int i = 0; i < _numTrainingExamples; i++)
     {
-	double* inputs = new double[_inputSize];
-	bool* outputs = new bool[_outputSize];
-	
+	std::vector<double> inputs (_inputSize);
+	std::vector<bool> outputs; outputs.reserve(_outputSize);
+
 	for (int j = 0; j < _inputSize; j++)
 	{
 	    (*examplesFileStream) >> inputs[j];
@@ -27,14 +29,21 @@ ExampleContainer::ExampleContainer(std::ifstream* examplesFileStream)
 	
 	for (int j = 0; j < _outputSize; j++)
 	{
-	    (*examplesFileStream) >> outputs[j];
+	    bool nextOutput;
+	    (*examplesFileStream) >> nextOutput;
 	    if (!(*examplesFileStream))
 	    {
 		std::cerr <<"Invalid file format, try again!";
 		exit(-1);
 	    }
+	    outputs.push_back(nextOutput);
 	}
-	
+
 	_examples.push_back(Example(inputs, outputs));
     }
+}
+
+std::list< Example > ExampleContainer::GetExamples()
+{
+    return _examples;
 }

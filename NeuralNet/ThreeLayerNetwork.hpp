@@ -4,22 +4,34 @@
 #include <iostream>
 #include <fstream>
 
+#include "Node.hpp"
+#include "Example.hpp"
+
 class ThreeLayerNetwork
 {
 public:
     ThreeLayerNetwork(std::ifstream* initialSetupFile);
     
+    void PropogateForward(Example example);
+    void PropogateErrorsBackward(Example example);
+    void UpdateWeights(Example example, double learningRate);
+    
     int GetNumInputNodes();
     int GetNumHiddenNodes();
     int GetNumOutputNodes();
+    
+    void OutputNetwork();
     
 private:
     int _numInputNodes;
     int _numHiddenNodes;
     int _numOutputNodes;
     
-    double** _weights1;
-    double** _weights2;
+    std::vector<Node> _hiddenNodes;
+    std::vector<Node> _outputNodes;
+    
+    void InitializeSizes();
+    double SumOutputErrors(int hiddenNodeNumber);
 };
 
 

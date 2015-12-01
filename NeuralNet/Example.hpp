@@ -3,15 +3,22 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 class Example
 {
 public:
-    Example(double* inputs, bool* outputs);
+    Example(std::vector<double> inputs, std::vector<bool> outputs);
+    
+    std::vector<double> GetInputs();
+    std::vector<bool> GetOutputs();
+    
+    int GetInputSize();
+    int GetOutputSize();
     
 private:   
-    double* _inputs;
-    bool* _expectedOutputs;
+    std::vector<double> _inputs;
+    std::vector<bool> _expectedOutputs;
 };
 
 
