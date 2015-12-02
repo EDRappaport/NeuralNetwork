@@ -9,7 +9,7 @@
 class ExampleContainer
 {
 public:
-    ExampleContainer(std::ifstream* examplesFileStream);
+    ExampleContainer(std::fstream* examplesFileStream);
     
     std::list<Example> GetExamples();
     

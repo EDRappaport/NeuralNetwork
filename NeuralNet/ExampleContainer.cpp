@@ -3,7 +3,7 @@
 #include "ExampleContainer.hpp"
 #include "Example.hpp"
 
-ExampleContainer::ExampleContainer(std::ifstream* examplesFileStream)
+ExampleContainer::ExampleContainer(std::fstream* examplesFileStream)
 {
     (*examplesFileStream) >> _numTrainingExamples >> _inputSize >> _outputSize;
     if (!(*examplesFileStream))

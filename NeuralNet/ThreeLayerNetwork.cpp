@@ -1,10 +1,11 @@
 #include <iostream>
+#include <iomanip>
 
 #include "ThreeLayerNetwork.hpp"
 #include "Node.hpp"
 
 
-ThreeLayerNetwork::ThreeLayerNetwork(std::ifstream* const initialSetupFile)
+ThreeLayerNetwork::ThreeLayerNetwork(std::fstream* const initialSetupFile)
 {
     (*initialSetupFile) >> _numInputNodes >> _numHiddenNodes >> _numOutputNodes;
     if (!(*initialSetupFile))
@@ -44,8 +45,6 @@ ThreeLayerNetwork::ThreeLayerNetwork(std::ifstream* const initialSetupFile)
 	}
 	_outputNodes.push_back(Node(currentWeights));
     }
-    
-    std::cout << _numInputNodes << ", " << _numHiddenNodes << ", " << _numOutputNodes;
 }
 
 void ThreeLayerNetwork::InitializeSizes()
@@ -59,7 +58,7 @@ double ThreeLayerNetwork::SumOutputErrors(int hiddenNodeNumber)
     double weightedOutputErrors = 0;
     for (int i = 0; i < _outputNodes.size(); i++)
     {
-	weightedOutputErrors += _outputNodes[i].GetWeights()[hiddenNodeNumber]*_outputNodes[i].GetError();
+	weightedOutputErrors += _outputNodes[i].GetWeights()[hiddenNodeNumber+1]*_outputNodes[i].GetError();
     }
     return weightedOutputErrors;
 }
@@ -111,16 +110,24 @@ void ThreeLayerNetwork::UpdateWeights(Example example, double learningRate)
     }
 }
 
-void ThreeLayerNetwork::OutputNetwork()
+void ThreeLayerNetwork::OutputNetwork(std::fstream* outputFilestream)
 {
+    std::cout << _numInputNodes << " " << _numHiddenNodes << " " << _numOutputNodes << std::endl;    
+    (*outputFilestream) << _numInputNodes << " " << _numHiddenNodes << " " << _numOutputNodes << std::endl;
+    
+    (*outputFilestream).setf(std::ios::fixed);
+    (*outputFilestream) << std::setprecision(3);
     for (int i = 0; i < _hiddenNodes.size(); i++)
     {
 	std::vector<double> weights = _hiddenNodes[i].GetWeights();
 	for (int j = 0; j < weights.size(); j++)
 	{
 	    std::cout << " " << weights[j] << " ";
+	    (*outputFilestream) << weights[j];
+	    if (j != weights.size()-1) (*outputFilestream) << " ";
 	}
 	std::cout << std::endl;
+	(*outputFilestream) << std::endl;
     }
     for (int i = 0; i < _outputNodes.size(); i++)
     {
@@ -128,7 +135,10 @@ void ThreeLayerNetwork::OutputNetwork()
 	for (int j = 0; j < weights.size(); j++)
 	{
 	    std::cout << " " << weights[j] << " ";
+	    (*outputFilestream) << weights[j];
+	    if (j != weights.size()-1) (*outputFilestream) << " ";
 	}
 	std::cout << std::endl;
+	(*outputFilestream) << std::endl;
     }
 }

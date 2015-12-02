@@ -10,7 +10,7 @@
 class ThreeLayerNetwork
 {
 public:
-    ThreeLayerNetwork(std::ifstream* initialSetupFile);
+    ThreeLayerNetwork(std::fstream* initialSetupFile);
     
     void PropogateForward(Example example);
     void PropogateErrorsBackward(Example example);
@@ -20,7 +20,7 @@ public:
     int GetNumHiddenNodes();
     int GetNumOutputNodes();
     
-    void OutputNetwork();
+    void OutputNetwork(std::fstream* outputFilestream);
     
 private:
     int _numInputNodes;
