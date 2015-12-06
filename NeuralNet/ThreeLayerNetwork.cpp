@@ -2,7 +2,17 @@
 #include <iomanip>
 
 #include "ThreeLayerNetwork.hpp"
+#include "InputHelper.hpp"
 #include "Node.hpp"
+
+ThreeLayerNetwork ThreeLayerNetwork::GetNewNetworkFromFile()
+{
+    std::cout << "Please enter the filename for the network file:" << std::endl;
+    std::fstream* initNetwork = InputHelper::GetFileOpen("/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/NeuralNet/sample.NNGrades.init", Read); //sample.NNGrades.05.100.trained");// 
+    ThreeLayerNetwork initialNetwork = ThreeLayerNetwork(initNetwork);
+    initNetwork->close();
+    return initialNetwork;
+}
 
 
 ThreeLayerNetwork::ThreeLayerNetwork(std::fstream* const initialSetupFile)
@@ -109,6 +119,17 @@ void ThreeLayerNetwork::UpdateWeights(Example example, double learningRate)
 	_outputNodes[i].SetNewWeights(hiddenLevel, learningRate);
     }
 }
+
+std::vector< bool > ThreeLayerNetwork::GetOutputs()
+{
+    std::vector<bool> outputs;
+    for (int i = 0; i < _outputNodes.size(); i++)
+    {
+	outputs.push_back(_outputNodes[i].GetCurrentValue() > 0.5);
+    }
+    return outputs;
+}
+
 
 void ThreeLayerNetwork::OutputNetwork(std::fstream* outputFilestream)
 {

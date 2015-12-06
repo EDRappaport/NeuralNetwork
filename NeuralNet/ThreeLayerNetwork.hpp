@@ -11,10 +11,13 @@ class ThreeLayerNetwork
 {
 public:
     ThreeLayerNetwork(std::fstream* initialSetupFile);
+    static ThreeLayerNetwork GetNewNetworkFromFile();
     
     void PropogateForward(Example example);
     void PropogateErrorsBackward(Example example);
     void UpdateWeights(Example example, double learningRate);
+    
+    std::vector<bool> GetOutputs();
     
     int GetNumInputNodes();
     int GetNumHiddenNodes();

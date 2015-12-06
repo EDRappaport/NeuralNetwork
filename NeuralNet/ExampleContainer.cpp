@@ -47,3 +47,9 @@ std::list< Example > ExampleContainer::GetExamples()
 {
     return _examples;
 }
+
+int ExampleContainer::GetOutputSize()
+{
+    return _outputSize;
+}
+

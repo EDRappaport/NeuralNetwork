@@ -12,6 +12,7 @@ public:
     ExampleContainer(std::fstream* examplesFileStream);
     
     std::list<Example> GetExamples();
+    int GetOutputSize();
     
 private:
     int _numTrainingExamples;
