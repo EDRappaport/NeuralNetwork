@@ -1,3 +1,0 @@
-/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/CMakeFiles/feretfaceinputprocessor.dir
-/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/CMakeFiles/initialNetBuilder.dir
-/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/include/pugixml-1.7/src/CMakeFiles/pugixml.dir
