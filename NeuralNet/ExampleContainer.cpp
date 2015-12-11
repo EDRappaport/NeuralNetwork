@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h> 
 
 #include "ExampleContainer.hpp"
 #include "Example.hpp"
@@ -6,9 +7,10 @@
 ExampleContainer::ExampleContainer(std::fstream* examplesFileStream)
 {
     (*examplesFileStream) >> _numTrainingExamples >> _inputSize >> _outputSize;
+    std::cout << _numTrainingExamples << " " << _inputSize << " " << _outputSize << std::endl;
     if (!(*examplesFileStream))
     {
-	std::cerr <<"Invalid file format, try again!";
+	std::cerr <<"Invalid file format (1), try again!";
 	exit(-1);
     }
     
@@ -22,7 +24,7 @@ ExampleContainer::ExampleContainer(std::fstream* examplesFileStream)
 	    (*examplesFileStream) >> inputs[j];
 	    if (!(*examplesFileStream))
 	    {
-		std::cerr <<"Invalid file format, try again!";
+		std::cerr <<"Invalid file format (2), try again!";
 		exit(-1);
 	    }
 	}
@@ -33,7 +35,7 @@ ExampleContainer::ExampleContainer(std::fstream* examplesFileStream)
 	    (*examplesFileStream) >> nextOutput;
 	    if (!(*examplesFileStream))
 	    {
-		std::cerr <<"Invalid file format, try again!";
+		std::cerr <<"Invalid file format (3), try again!";
 		exit(-1);
 	    }
 	    outputs.push_back(nextOutput);

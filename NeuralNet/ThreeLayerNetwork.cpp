@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h> 
 
 #include "ThreeLayerNetwork.hpp"
 #include "InputHelper.hpp"
@@ -143,11 +144,9 @@ void ThreeLayerNetwork::OutputNetwork(std::fstream* outputFilestream)
 	std::vector<double> weights = _hiddenNodes[i].GetWeights();
 	for (int j = 0; j < weights.size(); j++)
 	{
-	    std::cout << " " << weights[j] << " ";
 	    (*outputFilestream) << weights[j];
 	    if (j != weights.size()-1) (*outputFilestream) << " ";
 	}
-	std::cout << std::endl;
 	(*outputFilestream) << std::endl;
     }
     for (int i = 0; i < _outputNodes.size(); i++)
@@ -155,11 +154,9 @@ void ThreeLayerNetwork::OutputNetwork(std::fstream* outputFilestream)
 	std::vector<double> weights = _outputNodes[i].GetWeights();
 	for (int j = 0; j < weights.size(); j++)
 	{
-	    std::cout << " " << weights[j] << " ";
 	    (*outputFilestream) << weights[j];
 	    if (j != weights.size()-1) (*outputFilestream) << " ";
 	}
-	std::cout << std::endl;
 	(*outputFilestream) << std::endl;
     }
 }

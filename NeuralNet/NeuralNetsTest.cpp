@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <numeric>
+#include <stdlib.h> 
 
 #include "InputHelper.hpp"
 #include "ThreeLayerNetwork.hpp"

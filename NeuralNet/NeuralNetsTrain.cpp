@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <stdlib.h> 
 
 #include "ThreeLayerNetwork.hpp"
 #include "Example.hpp"
@@ -46,8 +47,10 @@ int main(int argc, char **argv)
     
     std::list<Example> examples = trainingExamples.GetExamples();
     
+    std::cout << "Learning";
     for (int i = 0; i < maxNumEpochs; i++)
     {
+	std::cout << "... ";
 	std::list<Example>::iterator ex;
 	for (ex = examples.begin(); ex != examples.end(); ex++)
 	{
@@ -56,5 +59,6 @@ int main(int argc, char **argv)
 	    initialNetwork.UpdateWeights((*ex), learningRate);
 	}
     }
+    std::cout << std::endl;
     initialNetwork.OutputNetwork(outputFile);
 }

@@ -1,0 +1,62 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+./include/pugixml-1.7/src/pugiconfig.hpp
+
+./include/pugixml-1.7/src/pugixml.hpp
+pugiconfig.hpp
+./include/pugixml-1.7/src/pugiconfig.hpp
+stddef.h
+-
+exception
+-
+iterator
+-
+iosfwd
+-
+string
+-
+
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/Recording.cpp
+Recording.hpp
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/Recording.hpp
+string.h
+-
+iostream
+-
+
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/Recording.hpp
+stdio.h
+-
+iostream
+-
+
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+list
+-
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+iomanip
+-
+opencv2/opencv.hpp
+-
+pugixml.hpp
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/pugixml.hpp
+Recording.hpp
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/Recording.hpp
+

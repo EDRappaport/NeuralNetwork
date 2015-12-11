@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/elli/Documents/Dropbox/The Cooper Union/ArtificialIntelligence/NeuralNetworks/FeretFaceInputProcessor/InitialNetBuilder.cpp
+iostream
+-
+fstream
+-
+time.h
+-
+vector
+-
+
